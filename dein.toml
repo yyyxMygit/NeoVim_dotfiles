@@ -1,0 +1,41 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]] # なんかスゴイやつ
+repo = 'Shougo/denite.nvim'
+
+[[plugins]] # 非同期処理
+repo = 'Shougo/vimproc.vim'
+hook_post_update = '''
+  if has('win32')
+    let  cmd = 'tools\\udpate-dll-mingw'
+  elseif has('win32unix') " for Cygwin
+    let cmd = 'make -f make cygwin.mak'
+  elseif executable('gmake')
+    let cmd = 'gmake'
+  else
+    let cmd = 'make'
+  endif
+  let g:dein#plugin.build = cmd
+'''
+
+[[plugins]] # バッファを実行
+repo = 'thinca/vim-quickrun'
+
+[[plugins]] # quickrun-hook集
+repo = 'osyo-manga/shabadou.vim'
+
+[[plugins]] # バッファのシンタックスチェック
+repo = 'osyo-manga/vim-watchdogs'
+
+[[plugins]] # ステータスラインをカスタマイズ
+repo = 'itchyny/lightline.vim'
+
+[[plugins]] # カラースキーム
+repo = 'icymind/NeoSolarized'
+
+[[plugins]] # ファイルをツリー表示
+repo = 'scrooloose/nerdtree'
+
+[[plugins]] # コメントアウト
+repo = 'tomtom/tcomment_vim'
