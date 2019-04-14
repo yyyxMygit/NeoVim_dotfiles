@@ -70,7 +70,7 @@ nnoremap - <C-x> " Normalで数字をデクリメント
 "--------------------------------------
 set t_Co=256
 set background=light
-"set termguicolors
+"set termguicolors " NeoSolarizedに必要らしいけど無くても動く、Why...
 set background=light
 colorscheme NeoSolarized
 
@@ -141,16 +141,20 @@ set wrapscan   " 最後まで検索すると折り返して検索
 nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 
 "--------------------------------------
-" その他
+" 表示・非表示
 "--------------------------------------
 set ruler  " 現在のカーソル位置(行、桁)を Vim ウィンドウの右下に常に表示
 set number " 行番号を表示
 set title  " タイトルを表示
+set list  " 不可視文字を表示
+set listchars=tab:>-,extends:< " 不可視文字を表示
+
+"--------------------------------------
+" その他
+"--------------------------------------
+set cursorline " カーソルラインをハイライト
 set laststatus=2 " 常にステータス行を表示 (詳細は:he laststatus)
 set cmdheight=2  " コマンドラインの高さ (Windows用gvim使用時はgvimrcを編集すること)
-"set list                                     " 不可視文字を表示
-"set listchars=tab:>-,extends:<,trail:-,eol:/ " 不可視文字を表示
-"set cursorline " カーソルラインをハイライト
 set wrap     " 画面の端で文字列を折り返し
 set whichwrap=b,s,h,l,<,>,[,],~ " カーソルの左右移動で行末から次の行の行頭への移動
 set scrolloff=5 " スクロールするとき、下が見える

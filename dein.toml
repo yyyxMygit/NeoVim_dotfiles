@@ -28,7 +28,7 @@ repo = 'osyo-manga/shabadou.vim'
 [[plugins]] # バッファのシンタックスチェック
 repo = 'osyo-manga/vim-watchdogs'
 
-[[plugins]] # ステータスラインをカスタマイズ
+[[plugins]] # ステータスライン・タブラインをカスタマイズ
 repo = 'itchyny/lightline.vim'
 
 [[plugins]] # カラースキーム
