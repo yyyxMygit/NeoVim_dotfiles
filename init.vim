@@ -64,6 +64,16 @@ call watchdogs#setup(g:quickrun_config)
 "--------------------------------------
 nnoremap + <C-a> " Normalで数字をインクリメント
 nnoremap - <C-x> " Normalで数字をデクリメント
+" ターミナルモードでinsertからnormalへ
+tnoremap <ESC> <C-\><C-n>
+" ウィンドウ
+nnoremap s <NOP> " sキーは潰す
+nnoremap ss :<C-u>sp<CR> " :split
+nnoremap sv :<C-u>vs<CR> " :vslplit
+nnoremap sh <C-w>h " 左へ移動
+nnoremap sj <C-w>j " 下へ移動
+nnoremap sk <C-w>k " 上へ移動
+nnoremap sl <C-w>l " 右へ移動
 
 "--------------------------------------
 " カラースキーム
@@ -148,11 +158,11 @@ set number " 行番号を表示
 set title  " タイトルを表示
 set list  " 不可視文字を表示
 set listchars=tab:>-,extends:< " 不可視文字を表示
+set cursorline " カーソルラインをハイライト
 
 "--------------------------------------
 " その他
 "--------------------------------------
-set cursorline " カーソルラインをハイライト
 set laststatus=2 " 常にステータス行を表示 (詳細は:he laststatus)
 set cmdheight=2  " コマンドラインの高さ (Windows用gvim使用時はgvimrcを編集すること)
 set wrap     " 画面の端で文字列を折り返し
