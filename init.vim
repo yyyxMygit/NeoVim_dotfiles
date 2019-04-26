@@ -1,12 +1,16 @@
 set shellslash " windowsでもパスの区切り判定に/を使える
 
+"---- vimprocを自動ダウンロード・ビルドするオプション
+"---- 何かのプロセスがvimprocを使うよりも前に書く必要がある
+let g:vimproc#download_windows_dll=1
+
 "======================================
 " プラグインの設定
 "======================================
 
-"-----------------------------------------
+"--------------------------------------
 " Shougo/dein.vim
-"-----------------------------------------
+"--------------------------------------
 if &compatible
   set nocompatible
 endif
@@ -34,22 +38,28 @@ if dein#check_install()
   call dein#install()
 endif
 
-"-----------------------------------------
+"--------------------------------------
 " itchyny/lightline.vim
-"-----------------------------------------
+"--------------------------------------
 " ステータスラインをカスタマイズするプラグイン
 " solarlizedに適した配色にする
 let g:lightline = {
-      \ 'colorscheme': 'solarized'
-      \ }
+  \ 'colorscheme' : 'solarized',
+  \ }
 set noshowmode " --INSERT-- とかを非表示
 
-"-----------------------------------------
+"--------------------------------------
+" vim-quickrun
+"--------------------------------------
+let g:quickrun_config={
+  \ "hook/output_encode/enable" : 1,
+  \ "hook/output_encode/encoding" : "utf-8",
+  \ "hook/output_encode/fileformat" : "dos",
+  \ }
+
+"--------------------------------------
 " osyo-manga/vim-watchdogs
-"-----------------------------------------
-" シンタックスチェックしてくれるプラグイン
-" ユーザ側で定義した g:quickrun_config
-let g:quickrun_config={}
+"--------------------------------------
 " この関数に g:quickrun_config を渡す
 " この関数で g:quickrun_config にシンタックスチェックを行うための設定を追加する
 " 関数を呼び出すタイミングはユーザの g:quickrun_config 設定後
@@ -74,6 +84,7 @@ nnoremap sh <C-w>h " 左へ移動
 nnoremap sj <C-w>j " 下へ移動
 nnoremap sk <C-w>k " 上へ移動
 nnoremap sl <C-w>l " 右へ移動
+nnoremap sx <C-w>x " 次のウィンドウと入れ替え
 
 "--------------------------------------
 " カラースキーム
