@@ -39,3 +39,6 @@ repo = 'scrooloose/nerdtree'
 
 [[plugins]] # コメントアウト
 repo = 'tomtom/tcomment_vim'
+
+[[plugins]] # terminalを便利に
+repo = 'kassio/neoterm'

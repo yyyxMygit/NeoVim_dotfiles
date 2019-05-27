@@ -1,0 +1,73 @@
+NeoVimの環境構築手順(windows10 x64)
+
+1. NeoVim
+1.1
+https://github.com/neovim/neovim/wiki/Installing-Neovim
+からインストーラをダウンロードし、NeoVimをインストール。
+binフォルダ内にあるnvim-qt.exeを実行しエラーが出なければオッケー。
+
+2. python3
+2.1
+https://www.python.org/
+からpython3をインストール。これがないとdenite.vimとかの有用なプラグインが使えない。
+2.2
+インストーラからインストールする。その際パスを通すことに注意。「Add Python 3.x to PATH」にチェックしておく。
+コマンドプロンプトで「Python -v」を実行し、「Python 3.x.x」とバージョンが表示されればオッケー。
+
+3 Python Provider
+コマンドプロンプトで「pip install neovim」を実行しPython Providerをインストール。
+neovimで「:checkhealth」を実行しPython3 provider(optional)の部分にエラーが出てなければオッケー。
+あと念のため「pip3 install neovim」もしとくといいかも。
+
+4 init.vim
+4.1
+neovimのユーザ設定ファイルinit.vimを編集する。
+init.vimの場所は
+デフォルトでは%LOCALAPPDATE%\nvim\init.vim
+環境変数XDG_CONFIG_HOMEが設定されているときは%XDG_CONFIG_HOME%\nvim\init.vim
+NeoVimでは設定ファイルのディレクトリ構造は、XDG Base Directory Specificationの標準規格に則っているため。
+init.vimが見つからなければXDG_CONFIG_HOMEを自分で作成する。
+コントロールパネル->システム->システムの詳細設定->環境変数と移動。
+ユーザ環境変数とすること。絶対にシステム環境変数はいじらない。
+名前をXDG_CONFIG_HOME、値はneovimファイル群の基準になるので管理しやすいディレクトリが良い。
+僕は(ドライブ):\Neovim\share\nvim\.configにしてる。
+環境変数を作ったら、上記のディレクトリ(%XDG_CONFIG_HOME%\nvim)にinit.vimを作成する。
+4.2
+プラグインを管理するプラグインdein.vimを用意する。
+init.vimに以下を記述。
+
+set shellslash
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible
+endif
+"---- dein自体の自動インストール
+let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
+let s:dein_dir = s:cache_home . '/dein'
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
+"---- 設定開始
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+  let s:config_home = empty($XDG_CONFIG_HOME) ? expand('$VIM/.config/nvim') : $XDG_CONFIG_HOME . '/nvim'
+  call dein#load_toml(s:config_home.'/dein.toml',      {'lazy':0})
+  call dein#load_toml(s:config_home.'/dein_lazy.toml', {'lazy':1})
+  call dein#end()
+  call dein#save_state()
+endif
+"---- 未インストールのものがあったらインストール
+if dein#check_install()
+  call dein#install()
+endif
+"End dein Scripts-------------------------
+
+init.vimに記述した後、プラグインリストとなるdein.tomlとdein_lazy.tomlファイルを作成する。場所はinit.vimと同じ。
+これによりdein.vimがインストールされる。
+
+5
+これでNeoVimの環境構築は終わり。あとはinit.vimに好みの設定を追加したり、.tomlでプラグインを入れてNeoVimをカスタマイズできる。
