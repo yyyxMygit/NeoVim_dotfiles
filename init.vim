@@ -167,8 +167,8 @@ nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 set ruler  " 現在のカーソル位置(行、桁)を Vim ウィンドウの右下に常に表示
 set number " 行番号を表示
 set title  " タイトルを表示
-set list  " 不可視文字を表示
-set listchars=tab:--,extends:< " 不可視文字を表示
+"set list  " 不可視文字を表示
+"set listchars=tab:--,extends:< " 不可視文字を表示
 set cursorline " カーソルラインをハイライト
 
 "--------------------------------------
